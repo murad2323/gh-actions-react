@@ -2,8 +2,8 @@ name:  Deploy React App
 on: 
   push:
     branches:
-      - master
-    paths-ignore:
+    # - master
+    #paths-ignore:
       - '.github/workflows/*'
 jobs:
   test:
@@ -11,6 +11,11 @@ jobs:
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
+      - name: Cache devp
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/packege-look.json') }}
       - name: Install dependecies
         run: npm ci
       - name: Test aplication
@@ -21,6 +26,11 @@ jobs:
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
+      - name: Cache devp
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/packege-look.json') }}
       - name: Install dependecies
         run: npm ci
       - name: Lint aplication
@@ -31,6 +41,11 @@ jobs:
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
+      - name: Cache devp
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/packege-look.json') }}
       - name: Install dependecies
         run: npm ci
       - name: Build aplication
